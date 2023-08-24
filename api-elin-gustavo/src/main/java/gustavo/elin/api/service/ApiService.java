@@ -173,7 +173,7 @@ public class ApiService {
 
 
     /**
-     * Vai retornar o nome da Franquia mais comum nos times dentro do período
+     * Vai retornar o número (quantidade) de Franquias dentro do período
      */
     public Map<String, Integer> contagemPorFranquia(DadosDatas dados) {
         Map<String, Integer> franquiaQuantidade = new HashMap<>();
