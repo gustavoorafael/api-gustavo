@@ -131,11 +131,43 @@ public class ApiServiceTest {
 
     @Test
     public void contagemPorFranquia(){
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
+                LocalDate.of(2023, Month.AUGUST, 23));
+
+        List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
+        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
+        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
+        composicaoTimeList.add(composicaoTime);
+
+        Mockito.doReturn(composicaoTimeList).when(apiService).buscarComposicao();
+
+        Map<String, Integer> resultado = apiService.contagemPorFranquia(dadosDatas);
+        System.out.println(resultado);
+
+        Assert.assertEquals(1, resultado);
 
     }
 
+
+
     @Test
     public void contagemPorFuncao(){
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
+                LocalDate.of(2023, Month.AUGUST, 23));
+
+        List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
+        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
+        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
+        composicaoTimeList.add(composicaoTime);
+
+        Mockito.doReturn(composicaoTimeList).when(apiService).buscarComposicao();
+
+        Map<String, Integer> resultado = apiService.contagemPorFuncao(dadosDatas);
+        System.out.println(resultado);
+
+        Assert.assertEquals(1, resultado);
 
     }
         
