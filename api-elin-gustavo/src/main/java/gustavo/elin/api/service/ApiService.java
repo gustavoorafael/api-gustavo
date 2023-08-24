@@ -44,10 +44,10 @@ public class ApiService {
     /**
      * Vai retornar uma lista com os nomes dos integrantes do time daquela data
      */
-    public List<String> timeDaData(@Valid DadosData dados) {
+    public List<String> timeDaData(DadosData dados) {
         List<String> nomesIntegrantes = new ArrayList<>();
-        List<ComposicaoTime> comps = buscarComposicao();
-        for (ComposicaoTime composicao : comps) {
+        List<ComposicaoTime> composicoes = buscarComposicao();
+        for (ComposicaoTime composicao : composicoes) {
             if (composicao.getTime().getData().isEqual(dados.data())) {
                 nomesIntegrantes.add(composicao.getIntegrante().getNome());
             }
@@ -63,26 +63,20 @@ public class ApiService {
         Map<String, Integer> integranteQuantidade = new HashMap<>();
         List<ComposicaoTime> composicoes = buscarComposicao();
         for (ComposicaoTime composicao : composicoes) {
-            LocalDate data = composicao
-                    .getTime()
-                    .getData();
-            if ((dados.dataInicial() == null
-                    || !data.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !data.isAfter(dados.dataFinal()))) {
-                String nomeDoIntegrante = composicao
-                        .getIntegrante()
-                        .getNome();
-                Integer qntd = integranteQuantidade.getOrDefault(nomeDoIntegrante, 0);
-                integranteQuantidade.put(nomeDoIntegrante, qntd+1);
+            LocalDate dataTime = composicao.getTime().getData();
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
+                String nomeIntegrante = composicao.getIntegrante().getNome();
+                Integer quantidade = integranteQuantidade.getOrDefault(nomeIntegrante, 0);
+                integranteQuantidade.put(nomeIntegrante, quantidade + 1);
             }
         }
         String integranteMaisUsado = null;
         int maiorQuantidade = 0;
-        for (Map.Entry<String, Integer> result : integranteQuantidade.entrySet()) {
-            if (result.getValue() > maiorQuantidade) {
-                integranteMaisUsado = result.getKey();
-                maiorQuantidade = result.getValue();
+        for (Map.Entry<String, Integer> resultado : integranteQuantidade.entrySet()) {
+            if (resultado.getValue() > maiorQuantidade) {
+                integranteMaisUsado = resultado.getKey();
+                maiorQuantidade = resultado.getValue();
             }
         }
         return integranteMaisUsado;
@@ -97,26 +91,23 @@ public class ApiService {
         List<ComposicaoTime> composicoesPeriodo = new ArrayList<>();
         for (ComposicaoTime composicao : composicoes) {
             LocalDate dataTime = composicao.getTime().getData();
-            if ((dados.dataInicial() == null
-                    || !dataTime.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !dataTime.isAfter(dados.dataFinal()))) {
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
                 composicoesPeriodo.add(composicao);
             }
         }
         Map<Time, Integer> timeQuantidade = new HashMap<>();
         for (ComposicaoTime composicao : composicoesPeriodo) {
-            Time time = composicao
-                    .getTime();
-            Integer qntd = timeQuantidade.getOrDefault(time, 0);
-            timeQuantidade.put(time, qntd+1);
+            Time time = composicao.getTime();
+            Integer quantidade = timeQuantidade.getOrDefault(time, 0);
+            timeQuantidade.put(time, quantidade + 1);
         }
         Time timeMaisUtilizado = null;
         int maiorQuantidade = 0;
-        for (Map.Entry<Time, Integer> result : timeQuantidade.entrySet()) {
-            if (result.getValue() > maiorQuantidade) {
-                timeMaisUtilizado = result.getKey();
-                maiorQuantidade = result.getValue();
+        for (Map.Entry<Time, Integer> resultado : timeQuantidade.entrySet()) {
+            if (resultado.getValue() > maiorQuantidade) {
+                timeMaisUtilizado = resultado.getKey();
+                maiorQuantidade = resultado.getValue();
             }
         }
         List<String> integrantesTimeMaisComum = new ArrayList<>();
@@ -135,24 +126,20 @@ public class ApiService {
         Map<String, Integer> funcaoQuantidade = new HashMap<>();
         List<ComposicaoTime> composicoes = buscarComposicao();
         for (ComposicaoTime composicao : composicoes) {
-            LocalDate dataTime = composicao
-                    .getTime()
-                    .getData();
-            if ((dados.dataInicial() == null
-                    || !dataTime.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !dataTime.isAfter(dados.dataFinal()))) {
+            LocalDate dataTime = composicao.getTime().getData();
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
                 String funcaoIntegrante = composicao.getIntegrante().getFuncao();
-                Integer qntd = funcaoQuantidade.getOrDefault(funcaoIntegrante, 0);
-                funcaoQuantidade.put(funcaoIntegrante, qntd+1);
+                Integer quantidade = funcaoQuantidade.getOrDefault(funcaoIntegrante, 0);
+                funcaoQuantidade.put(funcaoIntegrante, quantidade + 1);
             }
         }
         String funcaoMaisComum = null;
         int maiorQuantidade = 0;
-        for (Map.Entry<String, Integer> result : funcaoQuantidade.entrySet()) {
-            if (result.getValue() > maiorQuantidade) {
-                funcaoMaisComum = result.getKey();
-                maiorQuantidade = result.getValue();
+        for (Map.Entry<String, Integer> resultado : funcaoQuantidade.entrySet()) {
+            if (resultado.getValue() > maiorQuantidade) {
+                funcaoMaisComum = resultado.getKey();
+                maiorQuantidade = resultado.getValue();
             }
         }
         return funcaoMaisComum;
@@ -165,24 +152,20 @@ public class ApiService {
         Map<String, Integer> franquiaQuantidade = new HashMap<>();
         List<ComposicaoTime> composicoes = buscarComposicao();
         for (ComposicaoTime composicao : composicoes) {
-            LocalDate dataTime = composicao
-                    .getTime()
-                    .getData();
-            if ((dados.dataInicial() == null
-                    || !dataTime.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !dataTime.isAfter(dados.dataFinal()))) {
+            LocalDate dataTime = composicao.getTime().getData();
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
                 String franquia = composicao.getIntegrante().getFranquia();
-                Integer freq = franquiaQuantidade.getOrDefault(franquia, 0);
-                franquiaQuantidade.put(franquia, freq+1);
+                Integer frequencia = franquiaQuantidade.getOrDefault(franquia, 0);
+                franquiaQuantidade.put(franquia, frequencia + 1);
             }
         }
         String franquia = null;
         int maiorFrequencia = 0;
-        for (Map.Entry<String, Integer> result : franquiaQuantidade.entrySet()) {
-            if (result.getValue() > maiorFrequencia) {
-                franquia = result.getKey();
-                maiorFrequencia = result.getValue();
+        for (Map.Entry<String, Integer> resultado : franquiaQuantidade.entrySet()) {
+            if (resultado.getValue() > maiorFrequencia) {
+                franquia = resultado.getKey();
+                maiorFrequencia = resultado.getValue();
             }
         }
         return franquia;
@@ -196,23 +179,19 @@ public class ApiService {
         Map<String, Integer> franquiaQuantidade = new HashMap<>();
         List<ComposicaoTime> composicoes = buscarComposicao();
         for (ComposicaoTime composicao : composicoes) {
-            LocalDate dataTime = composicao
-                    .getTime()
-                    .getData();
-            if ((dados.dataInicial() == null
-                    || !dataTime.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !dataTime.isAfter(dados.dataFinal()))) {
+            LocalDate dataTime = composicao.getTime().getData();
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
                 String nomeFranquia = composicao.getIntegrante().getFranquia();
-                Integer qntd = franquiaQuantidade.getOrDefault(nomeFranquia, 0);
-                franquiaQuantidade.put(nomeFranquia, qntd+1);
+                Integer quantidade = franquiaQuantidade.getOrDefault(nomeFranquia, 0);
+                franquiaQuantidade.put(nomeFranquia, quantidade + 1);
             }
         }
         Map<String, Integer> contagemFranquia = new HashMap<>();
-        for (Map.Entry<String, Integer> result : franquiaQuantidade.entrySet()) {
-            String nomeFranquia = result.getKey();
-            Integer qntd = result.getValue();
-            contagemFranquia.put(nomeFranquia, qntd);
+        for (Map.Entry<String, Integer> resultado : franquiaQuantidade.entrySet()) {
+            String nomeFranquia = resultado.getKey();
+            Integer quantidade = resultado.getValue();
+            contagemFranquia.put(nomeFranquia, quantidade);
         }
         return contagemFranquia;
     }
@@ -224,23 +203,19 @@ public class ApiService {
         Map<String, Integer> funcaoQuantidade = new HashMap<>();
         List<ComposicaoTime> composicoes = buscarComposicao();
         for (ComposicaoTime composicao : composicoes) {
-            LocalDate dataTime = composicao
-                    .getTime()
-                    .getData();
-            if ((dados.dataInicial() == null
-                    || !dataTime.isBefore(dados.dataInicial()))
-                    && (dados.dataFinal() == null
-                    || !dataTime.isAfter(dados.dataFinal()))) {
+            LocalDate dataTime = composicao.getTime().getData();
+            if ((dados.dataInicial() == null || !dataTime.isBefore(dados.dataInicial()))
+                    && (dados.dataFinal() == null || !dataTime.isAfter(dados.dataFinal()))) {
                 String nomeFuncao = composicao.getIntegrante().getFuncao();
-                Integer qntd = funcaoQuantidade.getOrDefault(nomeFuncao, 0);
-                funcaoQuantidade.put(nomeFuncao, qntd+1);
+                Integer quantidade = funcaoQuantidade.getOrDefault(nomeFuncao, 0);
+                funcaoQuantidade.put(nomeFuncao, quantidade + 1);
             }
         }
         Map<String, Integer> resultado = new HashMap<>();
         for (Map.Entry<String, Integer> entrada : funcaoQuantidade.entrySet()) {
             String nomeFuncao = entrada.getKey();
-            Integer qntd = entrada.getValue();
-            resultado.put(nomeFuncao, qntd);
+            Integer quantidade = entrada.getValue();
+            resultado.put(nomeFuncao, quantidade);
         }
         return resultado;
     }
