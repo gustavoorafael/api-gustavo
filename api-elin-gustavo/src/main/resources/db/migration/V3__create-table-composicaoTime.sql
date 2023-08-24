@@ -1,10 +1,9 @@
-create table composicao(
+create table Composicao(
 
-                           id bigint not null auto_increment,
-                           Id_Integrante bigint not null,
-                           Id_Time bigint not null,
-
-                           primary key (Id),
-                           foreign key (Id_Integrante) references Integrante(Id),
-                           foreign key (Id_Time) references Time(id)
+                           Id BIGINT NOT NULL AUTO_INCREMENT,
+                           Id_Time BIGINT NOT NULL,
+                           Id_Integrante BIGINT NOT NULL,
+                           PRIMARY KEY (Id),
+                           FOREIGN KEY (Id_Time) REFERENCES Time(Id),
+                           FOREIGN KEY (Id_Integrante) REFERENCES Integrante(Id)
 );

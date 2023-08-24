@@ -1,9 +1,7 @@
-create table time(
+create table Time(
 
-                        id bigint not null auto_increment,
-                        time varchar(100) not null,
-                        data varchar(100) not null unique,
-
-                        primary key(id)
+                     Id BIGINT NOT NULL AUTO_INCREMENT,
+                     Data DATE NOT NULL,
+                     PRIMARY KEY (Id)
 
 );
