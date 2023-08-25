@@ -13,3 +13,10 @@ Considerações
 4. Espero muito que a lógica do projeto alcance as expectativas, pois dei o meu melhor dentro do tempo hábil.
 5. Obrigado pela atenção e pela oportunidade. Espero poder contribuir para a Élin Duxus!
 2. Qualquer dúvida fico à disposição.
+
+
+Segue print de como ficaram as telas, porém, não adicionei ao projeto. As requisições podem ser feitas pelo Postman ou Insomnia.
+3. ![image](https://github.com/gustavoorafael/api-gustavo/assets/142555669/6ed6e698-8357-4e58-ab6e-09c370f5ce12)
+4. ![image](https://github.com/gustavoorafael/api-gustavo/assets/142555669/b173da7d-5fde-48a8-a064-17a1cd38c982)
+
+
