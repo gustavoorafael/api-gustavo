@@ -27,11 +27,11 @@ public class ApiServiceTest {
     @Test
     public void timeDaData(){
         //Prepara os dados
-        DadosData dadosData = new DadosData(LocalDate.of(2023, Month.AUGUST, 23));
+        DadosData dadosData = new DadosData(LocalDate.of(1993, Month.JANUARY, 1));
         
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1993, Month.JANUARY, 1));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
         //Mocka
@@ -39,21 +39,21 @@ public class ApiServiceTest {
         //Executa
         List<String> resultado = apiService.timeDaData(dadosData);
         System.out.println(resultado);
-        //Compara (no primeiro parâmetro passa o resultado esperado e no segundo o que armazenou do retorno do método real)
+        //Compara
         List<String> esperado = new ArrayList<>();
-        esperado.add("teste");
+        esperado.add("Michael Jordan");
 
         Assert.assertEquals(esperado, resultado);
     }
 
     @Test
     public void integranteMaisUsado(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "nome teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
@@ -62,17 +62,17 @@ public class ApiServiceTest {
         String resultado = apiService.integranteMaisUsado(dadosDatas);
         System.out.println(resultado);
 
-        Assert.assertEquals("nome teste", resultado);
+        Assert.assertEquals("Michael Jordan", resultado);
     }
 
     @Test
     public void timeMaisComum(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
@@ -82,7 +82,7 @@ public class ApiServiceTest {
         System.out.println(resultado);
 
         List<String> esperado = new ArrayList<>();
-        esperado.add("teste");
+        esperado.add("Michael Jordan");
 
         Assert.assertEquals(esperado, resultado);
 
@@ -91,12 +91,12 @@ public class ApiServiceTest {
 
     @Test
     public void funcaoMaisComum(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "teste", "funcao teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
@@ -105,18 +105,18 @@ public class ApiServiceTest {
         String resultado = apiService.funcaoMaisComum(dadosDatas);
         System.out.println(resultado);
 
-        Assert.assertEquals("funcao teste", resultado);
+        Assert.assertEquals("ala", resultado);
 
     }
 
     @Test
     public void franquiaMaisFamosa(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "franquia teste", "teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
@@ -125,19 +125,25 @@ public class ApiServiceTest {
         String resultado = apiService.franquiaMaisFamosa(dadosDatas);
         System.out.println(resultado);
 
-        Assert.assertEquals("franquia teste", resultado);
+        Assert.assertEquals("NBA", resultado);
 
     }
 
     @Test
     public void contagemPorFranquia(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
+        composicaoTimeList.add(composicaoTime);
+
+
+        Integrante integrante1 = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time1 = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
+        ComposicaoTime composicaoTime1 = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
         Mockito.doReturn(composicaoTimeList).when(apiService).buscarComposicao();
@@ -145,7 +151,7 @@ public class ApiServiceTest {
         Map<String, Integer> resultado = apiService.contagemPorFranquia(dadosDatas);
         System.out.println(resultado);
 
-        Assert.assertEquals(1, resultado);
+        Assert.assertEquals(2, resultado.get("NBA").intValue());
 
     }
 
@@ -153,13 +159,23 @@ public class ApiServiceTest {
 
     @Test
     public void contagemPorFuncao(){
-        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(2023, Month.AUGUST, 12),
-                LocalDate.of(2023, Month.AUGUST, 23));
+        DadosDatas dadosDatas = new DadosDatas(LocalDate.of(1993, Month.JANUARY, 1),
+                LocalDate.of(1995, Month.JANUARY, 1));
 
         List<ComposicaoTime> composicaoTimeList = new ArrayList<>();
-        Integrante integrante = new Integrante(1L, "teste", "teste", "teste");
-        Time time = new Time(1L, LocalDate.of(2023, Month.AUGUST, 23));
+        Integrante integrante = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
         ComposicaoTime composicaoTime = new ComposicaoTime(1L, time, integrante);
+        composicaoTimeList.add(composicaoTime);
+
+        Integrante integrante1 = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time1 = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
+        ComposicaoTime composicaoTime1 = new ComposicaoTime(1L, time, integrante);
+        composicaoTimeList.add(composicaoTime);
+
+        Integrante integrante2 = new Integrante(1L, "NBA", "Michael Jordan", "ala");
+        Time time2 = new Time(1L, LocalDate.of(1994, Month.AUGUST, 23));
+        ComposicaoTime composicaoTime2 = new ComposicaoTime(1L, time, integrante);
         composicaoTimeList.add(composicaoTime);
 
         Mockito.doReturn(composicaoTimeList).when(apiService).buscarComposicao();
@@ -167,7 +183,7 @@ public class ApiServiceTest {
         Map<String, Integer> resultado = apiService.contagemPorFuncao(dadosDatas);
         System.out.println(resultado);
 
-        Assert.assertEquals(1, resultado);
+        Assert.assertEquals(3, resultado.get("ala").intValue());
 
     }
         
