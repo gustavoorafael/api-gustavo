@@ -3,15 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de time</title>
+    <title>Montagem de Times</title>
 </head>
 <body>
-<h1>Cadastro de time</h1>
-<form id="dateForm">
-    <label for="data">Data:</label>
-    <input type="date" id="data" name="data" required>
-    <br>
-    <button type="submit">Salvar</button>
-</form>
+<h1>Montagem de Times</h1>
+<label for="integSelect">Escolha um Integrante:</label>
+<select id="integSelect">
+    <option value="1">Integrante 1</option>
+    <option value="2">Integrante 2</option>
+    <option value="3">Integrante 3</option>
+    <!-- Adicione mais opções de integrantes aqui -->
+</select>
+<br>
+<label for="teamSelect">Selecione o Time:</label>
+<select id="teamSelect">
+    <option value="timeA">Time A</option>
+    <option value="timeB">Time B</option>
+    <!-- Adicione mais opções de times aqui -->
+</select>
+<br>
+<button id="addToTeam">Adicionar ao Time</button>
+
+<!-- Script para manipulação de eventos -->
+<script>
+    const addToTeamButton = document.getElementById("addToTeam");
+    addToTeamButton.addEventListener("click", () => {
+        const integSelect = document.getElementById("integSelect");
+        const selectedInteg = integSelect.options[integSelect.selectedIndex].text;
+
+        const teamSelect = document.getElementById("teamSelect");
+        const selectedTeam = teamSelect.options[teamSelect.selectedIndex].text;
+
+        alert(`Integrante ${selectedInteg} adicionado ao time ${selectedTeam}`);
+    });
+</script>
 </body>
 </html>
