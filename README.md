@@ -3,7 +3,7 @@
 1. Abrir a pasta da API em alguma IDE, usei o Intellij.
 2. Usar o MySql como banco de dados, no workbench crie apenas um database chamado "elin".
 3. Mudar o username e password para o escolhido em application.properties, que fica na pasta resources, as tabelas serão geradas automaticamente.
-4. Para rodar o projeto, é possível fazer as requisições pelo Insomnia ou Postman, pois não tive tempo de fazer as telas.
+4. Para rodar o projeto, é possível fazer as requisições pelo Insomnia ou Postman, pois não consegui conectar as telas.
 5. Ao rodar o projeto, é possível acessar o link: http://localhost:8080/swagger-ui/index.html . Para visualizar melhor.
 
 Considerações
